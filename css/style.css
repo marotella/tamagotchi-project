@@ -1,0 +1,25 @@
+body {
+    background-image: url("https://wallpaperaccess.com/full/1918832.jpg") ;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%; 
+    font-family: 'Maven Pro', sans-serif;
+     
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+h2{
+    display: flex;
+    justify-content: center;  
+}
+
+ul {
+    display: flex;
+    flex-direction: column;     
+    justify-content: center; 
+
+}
