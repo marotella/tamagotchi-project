@@ -7,81 +7,89 @@ class Game {
         this.age = 0
     }
     eatWell () {
-        if(this.hunger <= 3){
-            alert("Thanks for eating good food! Your hunger is now zero.")
-            this.hunger = 0
+        if(Sim.hunger <= 3){
+            alert("Thanks for having your sim eat healthy food! Their hunger is now zero.")
+            Sim.hunger = 0
+            console .log(Sim)
         } else {
-            alert("Thanks for eating good food! Your hunger decreased by 3")
-            this.hunger = this.hunger - 3
-        }checkDead() 
+            alert("Thanks for having your sim eat healthy food! Their hunger has decreased by 3.")
+            Sim.hunger = Sim.hunger - 3
+            console.log(Sim)
+        }
+        updateStats(Sim)
+        checkDead(Sim) 
     }
     eatJunk () {
-        if(this.hunger <= 5){
-            alert("Junk food is filling but now you feel a little tired! Your hunger is now zero, but your sleepiness increased by 2.")
-            this.hunger = 0
-            this.sleepiness = this.sleepiness + 2
+        if(Sim.hunger <= 5){
+            alert("Junk food is filling but now your sim feels quite tired! Their hunger is now zero, but thier sleepiness increased by 2.")
+            Sim.hunger = 0
+            Sim.sleepiness = Sim.sleepiness + 2
         } else {
-            alert("Junk food is filling but now you feel a little tired! Your hunger is now zero, but your sleepiness increased by 2.")
-            this.hunger = this.hunger - 3
-            this.sleepiness = this.sleepiness + 2
+            alert("Junk food is filling but now your sim feels a little tired! Thier hunger is now zero, but their sleepiness increased by 2.")
+            Sim.hunger = Sim.hunger - 3
+            Sim.sleepiness = Sim.sleepiness + 2
 
-        }checkDead() 
+        }updateStats(Sim)
+        checkDead(Sim) 
     }
     deepSleep () {
-        if(this.sleepiness <= 5){
-            alert("Nothing better than a good night of sleep! Your sleepiness is now zero, but your boredom increased by 2.")
-            this.sleepiness = 0
-            this.boredom = this.boredom + 2
+        if(Sim.sleepiness <= 5){
+            alert("Nothing better than a good night of sleep! Their sleepiness is now zero, but their boredom increased by 2.")
+            Sim.sleepiness = 0
+            Sim.boredom = Sim.boredom + 2
         } else {
-            alert("Nothing better than a good night of sleep! Your sleepiness decreased by 5, but your boredom increased by 2.")
-            this.sleepiness = this.sleepiness - 5
-            this.boredom = this.boredom + 2
-        }checkDead() 
+            alert("Nothing better than a good night of sleep! Their sleepiness decreased by 5, but your their increased by 2.")
+            Sim.sleepiness = Sim.sleepiness - 5
+            Sim.boredom = Sim.boredom + 2
+        }updateStats(Sim)
+        checkDead(Sim) 
     }
     catNap() {
-        if(this.hunger <= 2){
-            alert("Thanks for eating good food! Your hunger is now zero.")
-            this.hunger = 0
+        if(Sim.hunger <= 2){
+            alert("Thanks for giving your sim a quick nap! Their sleepiness is now zero.")
+            Sim.hunger = 0
         } else {
-            alert("Thanks for eating good food! Your hunger decreased by 2")
-            this.sleepiness = this.sleepiness - 2
-        }checkDead() 
+            alert("Thanks for giving your sim a quick nap! Their hunger decreased by 2")
+            Sim.sleepiness = Sim.sleepiness - 2
+        }updateStats(Sim)
+        checkDead(Sim)  
     }
     hike(){
-        if (this.boredom <= 4){
-            alert("Fun in the great outdoors! Your boredom is now zero, but your hunger and sleepiness increased by 1.")
-            this.boredom = 0
-            this.hunger = this.hunger + 1
-            this.sleepiness = this.sleepiness + 1
+        if (Sim.boredom <= 4){
+            alert("Fun in the great outdoors! Their boredom is now zero, but their hunger and sleepiness increased by 1.")
+            Sim.boredom = 0
+            Sim.hunger = Sim.hunger + 1
+            Sim.sleepiness = Sim.sleepiness + 1
         } else {
-            alert("Fun in the great outdoors! Your boredom decreased by 4, but your hunger and sleepiness increased by 1.")
-            this.boredom = this.boredom - 4
-            this.sleepiness = this.sleepiness + 1
-        }checkDead() 
+            alert("Fun in the great outdoors! Their boredom decreased by 4, their hunger and sleepiness increased by 1.")
+            Sim.boredom = Sim.boredom - 4
+            Sim.sleepiness = Sim.sleepiness + 1
+        }updateStats(Sim)
+        checkDead(Sim) 
         
     }
     tvTime (){
-        if (this.boredom <= 3){
+        if (Sim.boredom <= 3){
             alert("Got to watch your favorite show! Your boredom is now zero, but your sleepiness increased by 1.")
-            this.boredom = 0
-            this.sleepiness = this.sleepiness + 1
+            Sim.boredom = 0
+            Sim.sleepiness = Sim.sleepiness + 1
         } else {
             alert("Got to watch your favorite show! Your boredom decreased by 3, but your sleepiness increased by 1.")
-            this.boredom = this.boredom - 3
-            this.sleepiness = this.sleepiness + 1
-
-        }checkDead() 
+            Sim.boredom = Sim.boredom - 3
+            Sim.sleepiness = Sim.sleepiness + 1
+        }updateStats()
+        checkDead() 
     }
 }
 
 const checkDead = () =>{
-    if (this.sleepiness >= 10){
+    if (Sim.sleepiness >= 10){
         alert("Sorry, but your sim died of exhaustion.")
         return
-    } else if(this.hunger >= 10){
+    } else if(Sim.hunger >= 10){
         alert("Sorry, but your sim died from hunger!")
         return 
-    } else if (this.boredom >= 10){
+    } else if (Sim.boredom >= 10){
         alert("Sorry, but your sim died of boredom!")
         return
     }else{
@@ -89,21 +97,35 @@ const checkDead = () =>{
     }
 }
 
+const simName = document.querySelector(".simName")
+const simHungry = document.querySelector(".simHunger")
+const simSleepy = document.querySelector(".simSleepy")
+const simBored = document.querySelector(".simBoared")
+const simAge = document.querySelector(".simAge")
+const updateStats = () => {
+    document.querySelector(".simName").innerHTML = "Name: " + Sim.name
+    document.querySelector(".simHunger").innerHTML = "Hunger: " + Sim.hunger
+    document.querySelector(".simSleepy").innerHTML = "Sleepiness: "+Sim.sleepiness
+    document.querySelector(".simBored").innerHTML = "Boredom "+Sim.boredom
+    document.querySelector(".simAge").innerHTML = "Age: "+Sim.age
+}
+  
 
 
 //Need an age formula that increases the age in a set of time thinking 30 seconds? 1 min?
-//should age changed the attributes?
+//should age changed the attributes? 
 //need something at the end of each method to check for 10 - Done!
 //need something for win - should this live in the age?
 
 //event listeners that: create the class, trigger the method, change the image
+this.name = prompt("Name your sim!", this.name)
+const newName = document.querySelector(".simName")
+const Sim = new Game (this.name)
+console.log(Sim)
 let startGame = document.querySelector(".initiate")
-startGame.addEventListener("click", 
-)
-
-const makeNewSim = (name) => {
-    const name = prompt("Name your sim!", )
-}
+console.log(startGame)
+// startGame.addEventListener("click", Sim.name)
+updateStats(Sim)
 
 //buttons to trigger a method:
 let veggieButton = document.querySelector(".eatWell")
@@ -118,14 +140,10 @@ let sleepButton = document.querySelector(".sleep")
 sleepButton.addEventListener("click", Sim.deepSleep)
 
 let hikeButton = document.querySelector(".hike")
+hikeButton.addEventListener("click", Sim.hike)
+
 let tvButton = document.querySelector(".tvTime")
+tvButton.addEventListener("click", Sim.tvTime)
 
 
 //in html/css need the image to change based on age progression, and movement for the sim
-
-
-const Sim = new Game ("Lou")
-console.log(Sim)
-
-console.log(Sim.eatJunk())
-console.log(Sim)
