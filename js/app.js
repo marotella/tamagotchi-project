@@ -1,3 +1,6 @@
+
+//Create a class with default attributes and all methods. If time allows consider removing alerts and changing text with inner html to display a message 
+
 class Game {
     constructor(name){
         this.name = name
@@ -49,7 +52,7 @@ class Game {
             alert("Thanks for giving your sim a quick nap! Their sleepiness is now zero.")
             Sim.hunger = 0
         } else {
-            alert("Thanks for giving your sim a quick nap! Their hunger decreased by 2")
+            alert("Thanks for giving your sim a quick nap! Their sleepiness decreased by 2")
             Sim.sleepiness = Sim.sleepiness - 2
         }updateStats(Sim)
         checkDead(Sim)  
@@ -68,6 +71,7 @@ class Game {
         checkDead(Sim) 
         
     }
+
     tvTime (){
         if (Sim.boredom <= 3){
             alert("Got to watch your favorite show! Your boredom is now zero, but your sleepiness increased by 1.")
@@ -78,9 +82,10 @@ class Game {
             Sim.boredom = Sim.boredom - 3
             Sim.sleepiness = Sim.sleepiness + 1
         }updateStats()
-        checkDead() 
+        checkDead()
     }
 }
+//need something at the end of each method to check for 10 - Done!
 
 const checkDead = () =>{
     if (Sim.sleepiness >= 10){
@@ -96,36 +101,36 @@ const checkDead = () =>{
         alert("Thanks for taking care of your sim!")
     }
 }
-
-const simName = document.querySelector(".simName")
-const simHungry = document.querySelector(".simHunger")
-const simSleepy = document.querySelector(".simSleepy")
-const simBored = document.querySelector(".simBoared")
-const simAge = document.querySelector(".simAge")
+//Not sure why I made these 
+// const simName = document.querySelector(".simName")
+// const simHungry = document.querySelector(".simHunger")
+// const simSleepy = document.querySelector(".simSleepy")
+// const simBored = document.querySelector(".simBored")
+// const simAge = document.querySelector(".simAge")
 const updateStats = () => {
     document.querySelector(".simName").innerHTML = "Name: " + Sim.name
     document.querySelector(".simHunger").innerHTML = "Hunger: " + Sim.hunger
     document.querySelector(".simSleepy").innerHTML = "Sleepiness: "+Sim.sleepiness
-    document.querySelector(".simBored").innerHTML = "Boredom "+Sim.boredom
-    document.querySelector(".simAge").innerHTML = "Age: "+Sim.age
+    document.querySelector(".simBored").innerHTML = "Boredom: "+Sim.boredom
 }
   
 
-
-//Need an age formula that increases the age in a set of time thinking 30 seconds? 1 min?
-//should age changed the attributes? 
 //need something at the end of each method to check for 10 - Done!
 //need something for win - should this live in the age?
 
 //event listeners that: create the class, trigger the method, change the image
+
+
+
 this.name = prompt("Name your sim!", this.name)
-const newName = document.querySelector(".simName")
 const Sim = new Game (this.name)
 console.log(Sim)
-let startGame = document.querySelector(".initiate")
-console.log(startGame)
-// startGame.addEventListener("click", Sim.name)
 updateStats(Sim)
+
+
+
+// startGame.addEventListener("click", Sim.name)
+
 
 //buttons to trigger a method:
 let veggieButton = document.querySelector(".eatWell")
@@ -134,7 +139,7 @@ let junkButton = document.querySelector(".eatPoorly")
 junkButton.addEventListener("click", Sim.eatJunk)
 
 let napButton = document.querySelector(".nap")
-napButton.addEventListener("click", Sim.catNap)
+napButton.addEventListener("click", Sim.catNap) 
 
 let sleepButton = document.querySelector(".sleep")
 sleepButton.addEventListener("click", Sim.deepSleep)
@@ -146,4 +151,32 @@ let tvButton = document.querySelector(".tvTime")
 tvButton.addEventListener("click", Sim.tvTime)
 
 
-//in html/css need the image to change based on age progression, and movement for the sim
+
+//Need an age formula that increases the age in a set of time thinking 30 seconds? 1 min?
+//should age changed the attributes? 
+//need something for win - should this live in the age?
+
+
+const ageUp = () => {
+    document.querySelector(".simAge").innerHTML = "Age: " + Sim.age
+    console.log(Sim)
+    console.log(Sim.age)
+    if(Sim.age <= 6) {
+        document.querySelector(".simPic").src = "images/Toddler.jpg"
+    } else if(Sim.age > 6 && Sim.age < 13) {
+        document.querySelector(".simPic").src = "images/Child.jpg"
+    } else if(Sim.age > 12 && Sim.age < 21) {
+        document.querySelector(".simPic").src = "images/Teen.jpg"
+    } else if(Sim.age > 20 && Sim.age < 30) {
+        document.querySelector(".simPic").src = "images/Adult.jpg"
+    } else if(Sim.age > 30 && Sim.age < 40) {
+        document.querySelector(".simPic").src = "images/Elder.jpg"
+    } else if(Sim.age > 40) {
+        alert("Congratulations your sim has made it to old age! You win")
+    }
+        Sim.age = Sim.age + 3
+        console.log(Sim.age)
+        console.log(Sim)
+}
+
+setTimeout(ageUp(), 1000)
