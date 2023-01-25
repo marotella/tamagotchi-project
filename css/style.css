@@ -11,7 +11,7 @@ li{
 }
 h1 {
     display: flex;
-    font-size: 60px;
+    font-size: 54px;
     justify-content: center;
     text-align: center;
     color: #44b348; 
@@ -21,6 +21,7 @@ h1 {
 
 h2{
     display: flex;
+    font-size: 20px;
     text-align: center;
     justify-content: center;  
     color: rgb(15, 106, 167);
@@ -81,9 +82,11 @@ ul {
 
 h3 {
     text-align: center;
+    font-size: 20px;
 }
 .snippet{
     text-align: center;
+    font-size: 14px;
 
 }
 
@@ -96,7 +99,7 @@ h3 {
     justify-content: space-around;
     padding: 10px;
     border-radius: 8px;
-    font-size: small;
+    font-size: 14px;
     max-width: auto;
 
 }
@@ -111,7 +114,7 @@ h3 {
 }
 
 .actionDirections {
-    font-size: small;
+    font-size: 14px;
 }
 
 .simPic{
@@ -137,4 +140,10 @@ h3 {
 div {
     display: flex;
     justify-content: center;
+}
+.imageSources{
+    font-family: 'Maven Pro', sans-serif;
+    font-size: smaller;
+    align-items: center;
+    justify-content: space-around;
 }

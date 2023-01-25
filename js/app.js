@@ -190,7 +190,7 @@ const ageUp= () => {
     checkDead(Sim)
 }
 
-// let ageStart = document.querySelector(".start")
+let ageStart = document.querySelector(".start")
 
 
 
