@@ -39,7 +39,7 @@ class Game {
         if(Sim.sleepiness <= 5){
             alert("Nothing better than a good night of sleep! Their sleepiness is now zero, but their boredom increased by 2.")
             Sim.sleepiness = 0
-            Sim.boredom = Sim.boredom + 2
+            Sim.sleepiness = Sim.sleepiness + 2
         } else {
             alert("Nothing better than a good night of sleep! Their sleepiness decreased by 5, but your their increased by 2.")
             Sim.sleepiness = Sim.sleepiness - 5
@@ -48,9 +48,9 @@ class Game {
         checkDead(Sim) 
     }
     catNap() {
-        if(Sim.hunger <= 2){
+        if(Sim.sleepiness <= 2){
             alert("Thanks for giving your sim a quick nap! Their sleepiness is now zero.")
-            Sim.hunger = 0
+            Sim.sleepiness = 0
         } else {
             alert("Thanks for giving your sim a quick nap! Their sleepiness decreased by 2")
             Sim.sleepiness = Sim.sleepiness - 2
@@ -85,32 +85,31 @@ class Game {
         checkDead()
     }
 }
-//need something at the end of each method to check for 10 - Done!
+//need something at the end of each method to check for 10 - Done! Need to turn off the interval to get this to fully stop
+
 
 const checkDead = () =>{
     if (Sim.sleepiness >= 10){
         document.querySelector(".simPic").src = "images/grimreaper.jpeg"
         alert("Sorry, but your sim died of exhaustion.")
+        clearInterval(aging)
         return
+        
     } else if(Sim.hunger >= 10){
         document.querySelector(".simPic").src = "images/grimreaper.jpeg"
         alert("Sorry, but your sim died from hunger!")
+        clearInterval(aging)
         return 
     } else if (Sim.boredom >= 10){
         document.querySelector(".simPic").src = "images/grimreaper.jpeg"
         alert("Sorry, but your sim died of boredom!")
-
+        clearInterval(aging)
         return
     }else{
         alert("Thanks for taking care of your sim!")
     }
 }
-//Not sure why I made these 
-// const simName = document.querySelector(".simName")
-// const simHungry = document.querySelector(".simHunger")
-// const simSleepy = document.querySelector(".simSleepy")
-// const simBored = document.querySelector(".simBored")
-// const simAge = document.querySelector(".simAge")
+//changes the stats on the screen after actions of aging or user choices
 const updateStats = () => {
     document.querySelector(".simName").innerHTML = "Name: " + Sim.name
     document.querySelector(".simHunger").innerHTML = "Hunger: " + Sim.hunger
@@ -169,26 +168,34 @@ const ageUp= () => {
     console.log(Sim)
     console.log(Sim.age)
     if(Sim.age <= 6) {
+        updateStats(Sim)
         document.querySelector(".simPic").src = "images/Toddler.jpg" 
     } else if(Sim.age > 6 && Sim.age < 13) {
         document.querySelector(".simPic").src = "images/Child.jpg"
     } else if(Sim.age > 12 && Sim.age < 21) {
+        updateStats(Sim)
         document.querySelector(".simPic").src = "images/Teen.jpg"
     } else if(Sim.age > 20 && Sim.age < 30) {
+        updateStats(Sim)
         document.querySelector(".simPic").src = "images/Adult.jpg"
     } else if(Sim.age > 30 && Sim.age < 40) {
         document.querySelector(".simPic").src = "images/Elder.png"
     } else if(Sim.age > 40) {
+        updateStats(Sim)
         alert("Congratulations your sim has made it to old age! You win")
+        clearInterval(ageUp)
     }else{
         console.log("Something is not working")
     }
     Sim.age = Sim.age + 3
-    console.log(Sim.age)
-    console.log(Sim)
+    Sim.boredom= Sim.boredom +1
+    Sim.sleepiness= Sim.sleepiness +1
+    Sim.hunger= Sim.hunger +1
+    updateStats(Sim)
+    checkDead(Sim)
 }
 
-setInterval(ageUp, 15000)//give the name of the function and not call it using parenthesis
+let aging = setInterval(ageUp, 10000)//give the name of the function and not call it using parenthesis
 
 //Move the image;
 
