@@ -12,10 +12,12 @@ class Game {
     eatWell () {
         if(Sim.hunger <= 3){
             alert("Thanks for having your sim eat healthy food! Their hunger is now zero.")
+            document.body.style.backgroundImage = "url('images/day.webp')"
             Sim.hunger = 0
             console .log(Sim)
         } else {
             alert("Thanks for having your sim eat healthy food! Their hunger has decreased by 3.")
+            document.body.style.backgroundImage = "url('images/day.webp')"
             Sim.hunger = Sim.hunger - 3
             console.log(Sim)
         }
@@ -25,10 +27,12 @@ class Game {
     eatJunk () {
         if(Sim.hunger <= 5){
             alert("Junk food is filling but now your sim feels quite tired! Their hunger is now zero, but thier sleepiness increased by 2.")
+            document.body.style.backgroundImage = "url('images/day.webp')"
             Sim.hunger = 0
             Sim.sleepiness = Sim.sleepiness + 2
         } else {
             alert("Junk food is filling but now your sim feels a little tired! Thier hunger is now zero, but their sleepiness increased by 2.")
+            document.body.style.backgroundImage = "url('images/day.webp')"
             Sim.hunger = Sim.hunger - 3
             Sim.sleepiness = Sim.sleepiness + 2
 
@@ -38,10 +42,12 @@ class Game {
     deepSleep () {
         if(Sim.sleepiness <= 5){
             alert("Nothing better than a good night of sleep! Their sleepiness is now zero, but their boredom increased by 2.")
+            document.body.style.backgroundImage = "url(images/Night.jpg)"
             Sim.sleepiness = 0
             Sim.sleepiness = Sim.sleepiness + 2
         } else {
             alert("Nothing better than a good night of sleep! Their sleepiness decreased by 5, but your their increased by 2.")
+            document.body.style.backgroundImage = "url(images/Night.jpg)"
             Sim.sleepiness = Sim.sleepiness - 5
             Sim.boredom = Sim.boredom + 2
         }updateStats(Sim)
@@ -50,9 +56,11 @@ class Game {
     catNap() {
         if(Sim.sleepiness <= 2){
             alert("Thanks for giving your sim a quick nap! Their sleepiness is now zero.")
+            document.body.style.backgroundImage = "url(images/Night.jpg)"
             Sim.sleepiness = 0
         } else {
             alert("Thanks for giving your sim a quick nap! Their sleepiness decreased by 2")
+            document.body.style.backgroundImage = "url(images/Night.jpg)"
             Sim.sleepiness = Sim.sleepiness - 2
         }updateStats(Sim)
         checkDead(Sim)  
@@ -60,11 +68,13 @@ class Game {
     hike(){
         if (Sim.boredom <= 4){
             alert("Fun in the great outdoors! Their boredom is now zero, but their hunger and sleepiness increased by 1.")
+            document.body.style.backgroundImage = "url('images/day.webp')"
             Sim.boredom = 0
             Sim.hunger = Sim.hunger + 1
             Sim.sleepiness = Sim.sleepiness + 1
         } else {
             alert("Fun in the great outdoors! Their boredom decreased by 4, their hunger and sleepiness increased by 1.")
+            document.body.style.backgroundImage = "url('images/day.webp')"
             Sim.boredom = Sim.boredom - 4
             Sim.sleepiness = Sim.sleepiness + 1
         }updateStats(Sim)
@@ -75,10 +85,12 @@ class Game {
     tvTime (){
         if (Sim.boredom <= 3){
             alert("Got to watch your favorite show! Your boredom is now zero, but your sleepiness increased by 1.")
+            document.body.style.backgroundImage = "url('images/day.webp')"
             Sim.boredom = 0
             Sim.sleepiness = Sim.sleepiness + 1
         } else {
             alert("Got to watch your favorite show! Your boredom decreased by 3, but your sleepiness increased by 1.")
+            document.body.style.backgroundImage = "url('images/day.webp')"
             Sim.boredom = Sim.boredom - 3
             Sim.sleepiness = Sim.sleepiness + 1
         }updateStats()
@@ -118,22 +130,11 @@ const updateStats = () => {
 }
 
 
-
-//need something at the end of each method to check for 10 - Done!
-//need something for win - should this live in the age?
-
-//event listeners that: create the class, trigger the method, change the image
-
-
-
 this.name = prompt("Name your sim!", this.name)
 const Sim = new Game (this.name)
 console.log(Sim)
 updateStats(Sim)
 
-
-
-// startGame.addEventListener("click", Sim.name)
 
 
 //buttons to trigger a method:
@@ -162,11 +163,15 @@ let simPic = document.querySelector(".simPic")
 
 
 const ageUp= () => {
+    Sim.age = Sim.age + 3
+    Sim.boredom= Sim.boredom +1
+    Sim.sleepiness= Sim.sleepiness +1
+    Sim.hunger= Sim.hunger +1
     document.querySelector(".simAge").innerHTML = "Age: " + Sim.age
-    if(Sim.age <= 6) {
+    if(Sim.age < 6) {
         updateStats(Sim)
         document.querySelector(".simPic").src = "images/Toddler.jpg" 
-    } else if(Sim.age > 6 && Sim.age < 13) {
+    } else if(Sim.age >= 6 && Sim.age < 13) {
         document.querySelector(".simPic").src = "images/Child.jpg"
     } else if(Sim.age > 12 && Sim.age < 21) {
         updateStats(Sim)
@@ -178,21 +183,22 @@ const ageUp= () => {
         document.querySelector(".simPic").src = "images/Elder.png"
     } else if(Sim.age > 40) {
         updateStats(Sim)
-        alert("Congratulations your sim has made it to old age! You win")
+        alert("Congratulations your sim has become and Elder! You win")
         clearInterval(ageUp)
     }
-    Sim.age = Sim.age + 3
-    Sim.boredom= Sim.boredom +1
-    Sim.sleepiness= Sim.sleepiness +1
-    Sim.hunger= Sim.hunger +1
     updateStats(Sim)
     checkDead(Sim)
 }
 
-// let ageStart = document.querySelector(".intiate")
-// ageStart.addEventListener("click", aging)
-let aging = setInterval(ageUp, 10000)//give the name of the function and not call it using parenthesis
+// let ageStart = document.querySelector(".start")
 
+
+
+let aging = setInterval(ageUp, 5000)
+//give the name of the function and not call it using parenthesis
+
+
+// ageStart.addEventListener("click", aging())
 //Move the image;
 
 setInterval(() => {
@@ -200,3 +206,4 @@ setInterval(() => {
     const y = Math.floor(Math.random() * -4)
     simPic.style.transform = `translate(${x}px,${y}px)`;
 },1000)
+
