@@ -89,13 +89,17 @@ class Game {
 
 const checkDead = () =>{
     if (Sim.sleepiness >= 10){
+        document.querySelector(".simPic").src = "images/grimreaper.jpeg"
         alert("Sorry, but your sim died of exhaustion.")
         return
     } else if(Sim.hunger >= 10){
+        document.querySelector(".simPic").src = "images/grimreaper.jpeg"
         alert("Sorry, but your sim died from hunger!")
         return 
     } else if (Sim.boredom >= 10){
+        document.querySelector(".simPic").src = "images/grimreaper.jpeg"
         alert("Sorry, but your sim died of boredom!")
+
         return
     }else{
         alert("Thanks for taking care of your sim!")
@@ -112,8 +116,11 @@ const updateStats = () => {
     document.querySelector(".simHunger").innerHTML = "Hunger: " + Sim.hunger
     document.querySelector(".simSleepy").innerHTML = "Sleepiness: "+Sim.sleepiness
     document.querySelector(".simBored").innerHTML = "Boredom: "+Sim.boredom
+    document.querySelector(".simAge").innerHTML = "Age: " + Sim.age
+
 }
-  
+
+
 
 //need something at the end of each method to check for 10 - Done!
 //need something for win - should this live in the age?
@@ -150,19 +157,19 @@ hikeButton.addEventListener("click", Sim.hike)
 let tvButton = document.querySelector(".tvTime")
 tvButton.addEventListener("click", Sim.tvTime)
 
-
+let simPic = document.querySelector(".simPic")
 
 //Need an age formula that increases the age in a set of time thinking 30 seconds? 1 min?
 //should age changed the attributes? 
 //need something for win - should this live in the age?
 
 
-const ageUp = () => {
+const ageUp= () => {
     document.querySelector(".simAge").innerHTML = "Age: " + Sim.age
     console.log(Sim)
     console.log(Sim.age)
     if(Sim.age <= 6) {
-        document.querySelector(".simPic").src = "images/Toddler.jpg"
+        document.querySelector(".simPic").src = "images/Toddler.jpg" 
     } else if(Sim.age > 6 && Sim.age < 13) {
         document.querySelector(".simPic").src = "images/Child.jpg"
     } else if(Sim.age > 12 && Sim.age < 21) {
@@ -170,13 +177,23 @@ const ageUp = () => {
     } else if(Sim.age > 20 && Sim.age < 30) {
         document.querySelector(".simPic").src = "images/Adult.jpg"
     } else if(Sim.age > 30 && Sim.age < 40) {
-        document.querySelector(".simPic").src = "images/Elder.jpg"
+        document.querySelector(".simPic").src = "images/Elder.png"
     } else if(Sim.age > 40) {
         alert("Congratulations your sim has made it to old age! You win")
+    }else{
+        console.log("Something is not working")
     }
-        Sim.age = Sim.age + 3
-        console.log(Sim.age)
-        console.log(Sim)
+    Sim.age = Sim.age + 3
+    console.log(Sim.age)
+    console.log(Sim)
 }
 
-setTimeout(ageUp(), 1000)
+setInterval(ageUp, 15000)//give the name of the function and not call it using parenthesis
+
+//Move the image;
+
+setInterval(() => {
+    const x = Math.floor(Math.random()* 10)
+    const y = Math.floor(Math.random() * -4)
+    simPic.style.transform = `translate(${x}px,${y}px)`;
+},1000)

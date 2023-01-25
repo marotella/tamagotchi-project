@@ -6,7 +6,9 @@ body {
     font-family: 'Maven Pro', sans-serif;
      
 }
-
+li{
+    padding: 10px;
+}
 h1 {
     display: flex;
     font-size: 60px;
@@ -27,13 +29,13 @@ h2{
 
 ul {
     display: flex;
-    width: 100%;
-    height: 100%;
     flex-direction: column;     
-    justify-content: center; 
+    align-items: right;
+    justify-content: right;
     color: rgb(15, 106, 167); 
     text-shadow: 2px 2px 1px white;
     font-weight: 700;
+    font-size: large;
 }
 
 .initiate {
@@ -63,7 +65,7 @@ ul {
 .actionBoard {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: nowrap;
 }
 .playOption {
@@ -95,6 +97,7 @@ h3 {
     padding: 10px;
     border-radius: 8px;
     font-size: small;
+    max-width: auto;
 
 }
 
@@ -112,18 +115,21 @@ h3 {
 }
 
 .simPic{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     max-width: 250px;
     max-height: 250px;
     margin: 15px;
     border: 2px solid #44b348;
-    border-radius: 8px;
-    
+    border-radius: 8px; 
 }
 
 .tamaInfo{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    align-items: center;
     flex-wrap: nowrap;
  
 }
@@ -132,3 +138,28 @@ div {
     display: flex;
     justify-content: center;
 }
+
+/* .simPic:hover {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  @keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  } */
