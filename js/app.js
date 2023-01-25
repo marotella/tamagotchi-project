@@ -105,8 +105,6 @@ const checkDead = () =>{
         alert("Sorry, but your sim died of boredom!")
         clearInterval(aging)
         return
-    }else{
-        alert("Thanks for taking care of your sim!")
     }
 }
 //changes the stats on the screen after actions of aging or user choices
@@ -165,8 +163,6 @@ let simPic = document.querySelector(".simPic")
 
 const ageUp= () => {
     document.querySelector(".simAge").innerHTML = "Age: " + Sim.age
-    console.log(Sim)
-    console.log(Sim.age)
     if(Sim.age <= 6) {
         updateStats(Sim)
         document.querySelector(".simPic").src = "images/Toddler.jpg" 
@@ -184,8 +180,6 @@ const ageUp= () => {
         updateStats(Sim)
         alert("Congratulations your sim has made it to old age! You win")
         clearInterval(ageUp)
-    }else{
-        console.log("Something is not working")
     }
     Sim.age = Sim.age + 3
     Sim.boredom= Sim.boredom +1
@@ -195,6 +189,8 @@ const ageUp= () => {
     checkDead(Sim)
 }
 
+// let ageStart = document.querySelector(".intiate")
+// ageStart.addEventListener("click", aging)
 let aging = setInterval(ageUp, 10000)//give the name of the function and not call it using parenthesis
 
 //Move the image;
