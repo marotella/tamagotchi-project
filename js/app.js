@@ -194,7 +194,7 @@ let ageStart = document.querySelector(".start")
 
 
 
-let aging = setInterval(ageUp, 5000)
+let aging = setInterval(ageUp, 8000)
 //give the name of the function and not call it using parenthesis
 
 
