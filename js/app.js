@@ -159,8 +159,7 @@ let simPic = document.querySelector(".simPic")
 
 //Need an age formula that increases the age in a set of time thinking 30 seconds? 1 min?
 //should age changed the attributes? 
-//need something for win - should this live in the age?
-
+//need something for win - should this live in the age? Yes
 
 const ageUp= () => {
     Sim.age = Sim.age + 3
@@ -192,14 +191,9 @@ const ageUp= () => {
 
 let ageStart = document.querySelector(".start")
 
+let aging = setInterval(ageUp, 5000)
 
-
-let aging = setInterval(ageUp, 8000)
-//give the name of the function and not call it using parenthesis
-
-
-// ageStart.addEventListener("click", aging())
-//Move the image;
+//Move the image: Has it move up and down using the x and y axis, change the value multiplied to adjust how much this stuff is moved. 
 
 setInterval(() => {
     const x = Math.floor(Math.random()* 10)
